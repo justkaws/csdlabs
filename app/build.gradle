@@ -28,3 +28,22 @@ dependencies {
     androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.0.1'
 }
 
+ task ListFiles << {
+    File directory = new File("app\\src\\main\\java\\course\\labs\\todomanager");
+
+    // get all the files from a directory
+    File[] fList = directory.listFiles();
+     int count = 0;
+    for (File file : fList) {
+        count = 0;
+        System.out.println( file.name);
+        BufferedReader reader = new BufferedReader(new FileReader(file.getPath()));
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            if(!line.empty){
+                count++;
+            }
+        }
+        System.out.println(file.name + " - " + count);
+    }
+}
