@@ -3,6 +3,10 @@ machine:
   java:
     version: oraclejdk6
 
+dependencies:
+  pre:
+    - mv ci.properties local.properties
+    
 ## Customize test commands
 test:
   pre:
@@ -13,6 +17,9 @@ test:
   override:
     - gradle assemble
     - make test
+
+  post:
+    - mv app/build/reports $CIRCLE_ARTIFACTS/reports
 
 deployment:
   staging:
