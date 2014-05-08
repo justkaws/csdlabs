@@ -26,3 +26,4 @@ deployment:
     branch: master
     commands:
       - gradle assembleDebug
+      - mv app/build/apk/app-debug-unaligned.apk $CIRCLE_ARTIFACTS/reports
