@@ -49,7 +49,7 @@ dependencies {
         if ((double) notEmptyLinesCount / linesCount < 0.7)
             throw new GradleException("Percentage of useful lines should be at least 70%.")
 
-        if (linesCount > 350)
+        if (linesCount > 100)
             throw new GradleException("File should have less than 350 lines.")
     }
 }
