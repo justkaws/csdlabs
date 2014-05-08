@@ -29,7 +29,9 @@ dependencies {
 }
 
  task ListFiles << {
-    File directory = new File("src\\main\\java\\course\\labs\\todomanager");
+     File fileAux = new File(".");
+     System.out.println("File: " + fileAux.getCanonicalPath());
+    File directory = new File(".\\app\\src\\main\\java\\course\\labs\\todomanager");
 
     // get all the files from a directory
     File[] fList = directory.listFiles();
