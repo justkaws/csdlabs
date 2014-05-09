@@ -30,21 +30,29 @@ dependencies {
 }
 
  task ListFiles << {
-    File directory = new File("app\\src\\main\\java\\course\\labs\\todomanager");
+     File fileAux = new File(".");
+     System.out.println("File: " + fileAux.getCanonicalPath());
+    File directory = new File("app/src/main/java/course/labs/todomanager");
 
     // get all the files from a directory
     File[] fList = directory.listFiles();
-     int count = 0;
     for (File file : fList) {
-        count = 0;
-        System.out.println( file.name);
+        int linesCount = 0;
+        int notEmptyLinesCount = 0;
+        System.out.println(file.name);
         BufferedReader reader = new BufferedReader(new FileReader(file.getPath()));
         String line = null;
         while ((line = reader.readLine()) != null) {
             if(!line.empty){
-                count++;
+                notEmptyLinesCount++;
             }
+            linesCount++;
         }
-        System.out.println(file.name + " - " + count);
+
+        if ((double) notEmptyLinesCount / linesCount < 0.7)
+            throw new GradleException("Percentage of useful lines should be at least 70%.")
+
+        if (linesCount > 100)
+            throw new GradleException("File should have less than 350 lines.")
     }
 }
